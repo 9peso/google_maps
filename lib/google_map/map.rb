@@ -148,6 +148,8 @@ module GoogleMap
           c = "GSmallZoomControl3D"
         when :nav_label
           c = "GNavLabelControl"
+        when :drag_zoom
+          c = "DragZoomControl"
         end
         js << "#{dom_id}.addControl(new #{c}());"
       end
