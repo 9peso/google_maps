@@ -27,15 +27,22 @@ module GoogleMap
       options.each_pair { |key, value| send("#{key}=", value) }
     end
 
-    def to_html
+    def head_html
+      "<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=#{GOOGLE_APPLICATION_ID}' type='text/javascript'></script>"
+    end
+
+    def body_html
       html = []
 
-      html << "<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=#{GOOGLE_APPLICATION_ID}' type='text/javascript'></script>"    
       html << "<script type=\"text/javascript\">\n/* <![CDATA[ */\n"  
       html << to_js
       html << "/* ]]> */</script> "
 
       return html.join("\n")
+    end
+
+    def to_html
+      [head_html, body_html].join("\n")
     end
 
     def to_enable_prefix true_or_false
@@ -141,6 +148,8 @@ module GoogleMap
           c = "GSmallZoomControl3D"
         when :nav_label
           c = "GNavLabelControl"
+        when :drag_zoom
+          c = "DragZoomControl"
         end
         js << "#{dom_id}.addControl(new #{c}());"
       end
