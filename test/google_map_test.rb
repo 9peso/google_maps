@@ -16,10 +16,10 @@ class GoogleMapTest < Test::Unit::TestCase
       @map.markers << marker_factory
       assert_equal @map.markers.length, i
       puts @map.to_html
-      assert @map.to_html.include? "google_map_marker_#{i} = new GMarker( new GLatLng( 40, -100 )  );"
+      assert @map.to_html.include? "google_map_marker_#{i} = new GMarker( new GLatLng( 40, -100 )   );"
     end
   end
-  
+
   def test_center_on_markers_function_for_empty_map
     assert @map.center_map_js.include? "google_map.setCenter(google_map_latlng_bounds.getCenter(), google_map.getBoundsZoomLevel(google_map_latlng_bounds));"
   end
@@ -34,7 +34,7 @@ class GoogleMapTest < Test::Unit::TestCase
     @map.markers << marker_factory({:lng => 100})
     assert @map.center_map_js.include? "google_map_latlng_bounds.extend(new GLatLng(40, 100));"
   end
-  
+
   def test_set_center_with_options
     @map = GoogleMap::Map.new({:center => GoogleMap::Point.new(10, 10)})
     @map.markers << marker_factory
@@ -48,7 +48,7 @@ class GoogleMapTest < Test::Unit::TestCase
       assert @map.to_html.include? "#{@map.overlays[i - 1].dom_id} = new GPolyline(#{@map.overlays[i - 1].dom_id}_vertices, '#00FF00', 10, 2);"
     end
   end
-  
+
   def test_add_geoxml
     (1..5).each do |i|
       @map.overlays << geoxml_factory
@@ -56,7 +56,7 @@ class GoogleMapTest < Test::Unit::TestCase
       assert @map.to_html.include? "#{@map.overlays[i - 1].dom_id} = new GGeoXml('http://code.google.com/apis/kml/documentation/KML_Samples.kml')";
     end
   end
-  
+
   def test_map_type
     assert !@map.to_html.include?("setMapType(GoogleMap)")
     @map.map_type = "foo"

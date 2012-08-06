@@ -8,7 +8,7 @@ module UnbackedDomId
   #
   #  another_race_car.dom_id
   #  => "race_car_2"
-  # 
+  #
   def dom_id(prefix=nil)
     id = self.object_id.to_s.gsub('-', '_')
     class_name = self.class.name.gsub(/::/, '/').

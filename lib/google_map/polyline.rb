@@ -25,7 +25,7 @@ module GoogleMap
         self.dom_id = "#{map.dom_id}_marker_#{map.markers.size + 1}"
       end
     end
-            
+
     def to_js
 
       js = []
@@ -39,5 +39,5 @@ module GoogleMap
       js.join "\n"
     end
   end
-  
+
 end
