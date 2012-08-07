@@ -35,7 +35,6 @@ module GoogleMap
     def to_html
       html = []
 
-      html << "<script src='http://maps.googleapis.com/maps/api/js?sensor=false' type='text/javascript'></script>"
       html << "<script type=\"text/javascript\">\n/* <![CDATA[ */\n"
       html << to_js
       html << "/* ]]> */</script> "
