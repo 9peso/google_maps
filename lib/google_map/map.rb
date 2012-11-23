@@ -106,7 +106,7 @@ module GoogleMap
       if self.center
         set_center_js << "#{dom_id}.setCenter(new google.maps.LatLng(#{center.lat}, #{center.lng}));"
       elsif !markers.present?
-        set_center_js << "#{dom_id}.setCenter(new google.maps.LatLng(0, 0);"
+        set_center_js << "#{dom_id}.setCenter(new google.maps.LatLng(0, 0));"
       elsif markers.size == 1
         set_center_js << "#{dom_id}.setCenter(new google.maps.LatLng(#{markers.first.lat}, #{markers.first.lng}));"
       else
