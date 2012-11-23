@@ -39,7 +39,7 @@ module GoogleMap
       html << to_js
       html << "/* ]]> */</script> "
 
-      return html.join("\n")
+      return html.join("\n").html_safe
     end
 
     def to_enable_prefix true_or_false
@@ -123,7 +123,7 @@ module GoogleMap
     end
 
     def div(width = '100%', height = '100%')
-      "<div id='#{dom_id}' style='width: #{width}; height: #{height}'></div>"
+      "<div id='#{dom_id}' style='width: #{width}; height: #{height}'></div>".html_safe
     end
 
   end
