@@ -39,7 +39,7 @@ module GoogleMap
       html << to_js
       html << "/* ]]> */</script> "
 
-      return html.join("\n")
+      return html.join("\n").html_safe
     end
 
     def to_enable_prefix true_or_false
@@ -106,7 +106,7 @@ module GoogleMap
       if self.center
         set_center_js << "#{dom_id}.setCenter(new google.maps.LatLng(#{center.lat}, #{center.lng}));"
       elsif !markers.present?
-        set_center_js << "#{dom_id}.setCenter(new google.maps.LatLng(0, 0);"
+        set_center_js << "#{dom_id}.setCenter(new google.maps.LatLng(0, 0));"
       elsif markers.size == 1
         set_center_js << "#{dom_id}.setCenter(new google.maps.LatLng(#{markers.first.lat}, #{markers.first.lng}));"
       else
@@ -123,7 +123,7 @@ module GoogleMap
     end
 
     def div(width = '100%', height = '100%')
-      "<div id='#{dom_id}' style='width: #{width}; height: #{height}'></div>"
+      "<div id='#{dom_id}' style='width: #{width}; height: #{height}'></div>".html_safe
     end
 
   end
